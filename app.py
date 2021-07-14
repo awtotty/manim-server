@@ -12,60 +12,24 @@ app.config.from_object(__name__)
 CORS(app, resources={r'/*': {'origins': '*'}})
 
 
-# data
-BOOKS = [
-    {
-        'title': 'On the Road',
-        'author': 'Jack Kerouac',
-        'read': True
-    },
-    {
-        'title': 'Harry Potter and the Philosopher\'s Stone',
-        'author': 'J. K. Rowling',
-        'read': False
-    },
-    {
-        'title': 'Green Eggs and Ham',
-        'author': 'Dr. Seuss',
-        'read': True
-    }
-]
-
-
-
 # sanity check route
 @app.route('/ping', methods=['GET'])
 def ping_pong():
     return jsonify('pong!')
 
 
-@app.route('/books', methods=['GET', 'POST'])
-def all_books():
-    response_object = { 'status': 'success' }
-    if request.method == 'POST':
-        post_data = request.get_json()
-        BOOKS.append({
-            'title': post_data.get('title'),
-            'author': post_data.get('author'),
-            'read': post_data.get('read')
-        })
-        response_object['message'] = 'Book added!'
-    elif request.method == 'GET':
-        response_object['books'] = BOOKS
-    return jsonify(response_object)
-
 
 @app.route('/manim', methods=['POST'])
 def manim():
-    # response_object = { 'status': 'success' }
     anim_data = request.get_json()
 
-    fname = "tmp.txt"
-    with open(fname, 'w') as f: 
+    fname = "hello"
+    with open(f"tmp/{fname}.txt", 'w') as f: 
         f.write(str(anim_data))
 
-    f = open(fname, 'r') 
+    f = open(f"vid/{fname}.txt", 'r') 
     return f.read()
+
 
 if __name__ == '__main__':
     app.run()

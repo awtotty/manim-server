@@ -1,0 +1,1 @@
+[{'typeStr': 'Circle', 'states': [{'x': 117, 'y': 332, 'rot': 0, 'color': 'blue', 'size': 1, 'time': 0}], 'stateModel': 0, 'dragging': False, 'offsetX': -0.79998779296875, 'offsetY': 0}]

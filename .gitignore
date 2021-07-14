@@ -1,1 +1,6 @@
-/tmp.txt
+tmp/*
+vid/*
+
+# keep the folders
+!tmp/.gitkeep
+!vid/.gitkeep
