@@ -1,5 +1,7 @@
 tmp/*
 vid/*
+cert.pem
+key.pem
 
 # keep the folders
 !tmp/.gitkeep
