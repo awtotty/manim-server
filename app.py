@@ -46,7 +46,11 @@ def manim(vid_id=None):
         f = open(f"demo/{vid_id}.mp4", 'rb') 
 
         # clean up vid files
-        shutil.rmtree(f"tmp/{vid_id}")
+        try: 
+            shutil.rmtree(f"tmp/{vid_id}")
+        except: 
+            print(f"Failed to remove temp dir tmp/{vid_id}")
+            pass
 
         return f.read()
     
