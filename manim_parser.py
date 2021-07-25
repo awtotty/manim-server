@@ -17,6 +17,8 @@ def generate_manim_file(fname, anim_data):
     # TODO: test should be replaced with tmp
     fpath = f"test/{fname}/{fname}.py"
 
+    # groups_dict = {}
+
     # create objects
     for shape_i, shape in enumerate(anim_data): 
         shape_type = shape["typeStr"]
@@ -86,14 +88,19 @@ def test_gen():
     anim_data[0]["states"][1]["y"] = 1
     anim_data[0]["states"][1]["size"] = 2
     anim_data[0]["states"][1]["time"] = 1
+    anim_data[0]["states"].append(anim_data[0]["states"][1])
+    anim_data[0]["states"][2]["x"] = 0
+    anim_data[0]["states"][2]["y"] = 1
+    anim_data[0]["states"][2]["size"] = 1
+    anim_data[0]["states"][2]["time"] = 2
 
     anim_data[1]["states"][0]["x"] = 4
     anim_data[1]["states"][0]["y"] = 0
     anim_data[1]["states"][0]["time"] = 0
     anim_data[1]["states"][1]["x"] = 1
     anim_data[1]["states"][1]["y"] = 0
-    anim_data[1]["states"][1]["time"] = 2
     anim_data[1]["states"][1]["rot"] = 45 
+    anim_data[1]["states"][1]["time"] = 2
 
     generate_manim_file(fname, anim_data)
 
@@ -101,4 +108,5 @@ def test_gen():
 
 
 if __name__ == "__main__": 
-    test_gen()
+    # test_gen()
+    run_manim("group_test")
