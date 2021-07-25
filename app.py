@@ -1,6 +1,9 @@
 from flask import Flask, jsonify, request
 from flask.wrappers import Response
 from flask_cors import CORS
+
+from manim_parser import generate_manim_file
+
 import os
 import subprocess
 import shutil
@@ -81,6 +84,7 @@ def create_py_file(fname):
     with open(anim_data_path, 'rb') as f: 
         anim_data = pickle.load(f)
 
+    # generate_manim_file(f"tmp/{fname}.py", anim_data)
     # TODO: demo 
     subprocess.run(f"cp demo/{fname}.py tmp/{fname}/{fname}.py".split(' '))
 
