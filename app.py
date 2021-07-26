@@ -44,9 +44,9 @@ def manim(vid_id=None):
         create_vid(vid_id)
 
         # send file
-        # f = open(f"tmp/{fname}/media/videos/{fname}.mp4", 'rb') 
+        f = open(f"tmp/{vid_id}/media/videos/{vid_id}/480p15/{vid_id}.mp4", 'rb') 
         # TODO: demo
-        f = open(f"demo/{vid_id}.mp4", 'rb') 
+        # f = open(f"demo/{vid_id}.mp4", 'rb') 
 
         # clean up vid files
         try: 
@@ -84,9 +84,9 @@ def create_py_file(fname):
     with open(anim_data_path, 'rb') as f: 
         anim_data = pickle.load(f)
 
-    # generate_manim_file(f"tmp/{fname}.py", anim_data)
+    generate_manim_file(f"{fname}", anim_data)
     # TODO: demo 
-    subprocess.run(f"cp demo/{fname}.py tmp/{fname}/{fname}.py".split(' '))
+    # subprocess.run(f"cp demo/{fname}.py tmp/{fname}/{fname}.py".split(' '))
 
 def create_vid(fname): 
     # wait for necessary files
