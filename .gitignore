@@ -2,6 +2,7 @@ tmp/*
 vid/*
 cert.pem
 key.pem
+test/*
 
 # keep the folders
 !tmp/.gitkeep
