@@ -55,6 +55,10 @@ def generate_manim_file(fname, anim_data):
                 fcontents += f"{dtab}obj_{shape_i}_{t_str} = {construct_circle_str(state)} \n"
             elif shape_type == "Square": 
                 fcontents += f"{dtab}obj_{shape_i}_{t_str} = {construct_square_str(state)} \n"
+            elif shape_type == "Triangle": 
+                fcontents += f"{dtab}obj_{shape_i}_{t_str} = {construct_triangle_str(state)} \n"
+            elif shape_type == "Point": 
+                fcontents += f"{dtab}obj_{shape_i}_{t_str} = {construct_point_str(state)} \n"
 
             # set mobject state
             fcontents += f"{dtab}obj_{shape_i}_{t_str}.set_x({state['x']}) \n"
@@ -131,6 +135,11 @@ def construct_circle_str(state):
 def construct_square_str(state): 
     return f"Square(color=\"{state['color']}\")"
 
+def construct_triangle_str(state): 
+    return f"Triangle(color=\"{state['color']}\")"
+
+def construct_point_str(state): 
+    return f"Dot(color=\"{state['color']}\")"
 
 
 # TODO: remove after testing
