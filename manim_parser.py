@@ -1,11 +1,5 @@
 import math
 
-# TODO: remove after testing
-import os
-import pickle
-import os
-import subprocess
-
 tab = "  "
 dtab = tab * 2
 
@@ -15,10 +9,6 @@ def generate_manim_file(fname, anim_data):
     fcontents += f"{tab}def construct(self):\n"
 
     fpath = f"tmp/{fname}/{fname}.py"
-    # TODO: test should be replaced with tmp
-    # fpath = f"test/{fname}/{fname}.py"
-
-    print(anim_data)
 
     # groups_dict stores a dict for each time marker in object states
     groups_dict = {}
@@ -142,47 +132,6 @@ def construct_point_str(state):
     return f"Dot(color=\"{state['color']}\")"
 
 
-# TODO: remove after testing
-def run_manim(fname): 
-    # run docker with manim to render vid
-    cwd = os.getcwd()
-    subprocess.run( 
-        f'docker run --rm -it -v {cwd}/test/{fname}:/manim manimcommunity/manim manim {fname}.py {fname} -ql'.split(' ')
-    )
-
-
-def test_gen():
-    fname = "hello"
-
-    with open("test/hello/anim_data.p", 'rb') as f: 
-        anim_data = pickle.load(f)
-    
-    anim_data[0]["states"][0]["x"] = 0
-    anim_data[0]["states"][0]["y"] = 0
-    anim_data[0]["states"][0]["time"] = 0.5
-    anim_data[0]["states"][1]["x"] = 2
-    anim_data[0]["states"][1]["y"] = 1
-    anim_data[0]["states"][1]["size"] = 2
-    anim_data[0]["states"][1]["time"] = 1
-    # anim_data[0]["states"].append(anim_data[0]["states"][1].copy())
-    # anim_data[0]["states"][2]["x"] = 0
-    # anim_data[0]["states"][2]["y"] = 1
-    # anim_data[0]["states"][2]["size"] = 1
-    # anim_data[0]["states"][2]["time"] = 2
-
-    anim_data[1]["states"][0]["x"] = 4
-    anim_data[1]["states"][0]["y"] = 0
-    anim_data[1]["states"][0]["time"] = 0
-    anim_data[1]["states"][1]["x"] = 1
-    anim_data[1]["states"][1]["y"] = 0
-    anim_data[1]["states"][1]["rot"] = 45 
-    anim_data[1]["states"][1]["time"] = 2
-
-    generate_manim_file(fname, anim_data)
-
-    run_manim(fname)
-
-
 if __name__ == "__main__": 
-    test_gen()
-    # run_manim("group_test")
+    print("No main function")
+    pass
