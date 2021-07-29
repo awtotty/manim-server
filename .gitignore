@@ -3,6 +3,7 @@ vid/*
 cert.pem
 key.pem
 test/*
+__pycache__/
 
 # keep the folders
 !tmp/.gitkeep
