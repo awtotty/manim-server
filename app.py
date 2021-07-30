@@ -44,9 +44,12 @@ def manim(vid_id=None):
         create_vid(vid_id)
 
         # send file
-        f = open(f"tmp/{vid_id}/media/videos/{vid_id}/480p15/{vid_id}.mp4", 'rb') 
-        # TODO: demo
-        # f = open(f"demo/{vid_id}.mp4", 'rb') 
+        f = None
+        try: 
+            f = open(f"tmp/{vid_id}/media/videos/{vid_id}/480p15/{vid_id}.mp4", 'rb') 
+        except: 
+            print(f"Failed to open tmp/{vid_id}/media/videos/{vid_id}/480p15/{vid_id}.mp4") 
+            pass
 
         # clean up vid files
         try: 
@@ -55,7 +58,7 @@ def manim(vid_id=None):
             print(f"Failed to remove temp dir tmp/{vid_id}")
             pass
 
-        return f.read()
+        return f.read() if f is not None else Response(status=500) 
     
 def save_anim_data(fname, anim_data): 
     # create fname folder if needed
@@ -84,9 +87,10 @@ def create_py_file(fname):
     with open(anim_data_path, 'rb') as f: 
         anim_data = pickle.load(f)
 
-    generate_manim_file(f"{fname}", anim_data)
-    # TODO: demo 
-    # subprocess.run(f"cp demo/{fname}.py tmp/{fname}/{fname}.py".split(' '))
+    try: 
+        generate_manim_file(f"{fname}", anim_data)
+    except: 
+        print(f"Failed to generate manim file {fname}")
 
 def create_vid(fname): 
     # wait for necessary files
@@ -95,10 +99,13 @@ def create_vid(fname):
         return
 
     # run docker with manim to render vid
-    cwd = os.getcwd()
-    subprocess.run( 
-        f'docker run --rm -it -v {cwd}/tmp/{fname}:/manim manimcommunity/manim manim {fname}.py {fname} -ql'.split(' ')
-    )
+    try: 
+        cwd = os.getcwd()
+        subprocess.run( 
+            f'docker run --rm -it -v {cwd}/tmp/{fname}:/manim manimcommunity/manim manim {fname}.py {fname} -ql'.split(' ')
+        )
+    except: 
+        print(f"Docker failed to handle {fname}")
 
 def file_exists_delayed(fpath, max_time_s): 
     time_counter = 0
