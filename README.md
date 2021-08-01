@@ -1,6 +1,6 @@
 # manim-server
 
-This application serves client [Manim Interactive (github.com/awtotty/manimi)](https://github.com/awtotty/manimi) instances in their requests for scenes rendered my [Manim (manim.community](https://www.manim.community/). 
+This application serves client [Manim Interactive](https://github.com/awtotty/manimi) instances in their requests for scenes rendered my [Manim](https://www.manim.community/). 
 
 ## Installation
 To run the server, install the dependencies: 
