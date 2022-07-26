@@ -18,9 +18,9 @@ app = Flask(__name__)
 app.config.from_object(__name__)
 
 # enable CORS
-# CORS(app, resources={r'/*': {'origins': '*'}})
+CORS(app, resources={r'/*': {'origins': '*'}})
 # CORS(app, resources={r'/*': {'origins': 'https://manim-interactive.com/'}})
-CORS(app)
+# CORS(app)
 
 
 # sanity check route
@@ -30,6 +30,7 @@ def ping_pong():
 
 
 @app.route('/manim/<vid_id>', methods=['GET', 'POST'])
+@cross_origin()
 def manim(vid_id=None):
     if vid_id is None: 
         return jsonify("You didn't send a valid id to the server") 
