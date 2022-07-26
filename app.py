@@ -18,7 +18,7 @@ app = Flask(__name__)
 app.config.from_object(__name__)
 
 # enable CORS
-CORS(app, resources={r'/*': {'origins': '*'}})
+CORS(app, resources={r'/*': {'origins': 'https://manim-interactive.com/'}})
 
 
 # sanity check route
