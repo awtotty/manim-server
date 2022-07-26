@@ -1,6 +1,6 @@
 from flask import Flask, jsonify, request
 from flask.wrappers import Response
-from flask_cors import CORS
+from flask_cors import CORS, cross_origin
 
 from manim_parser import generate_manim_file
 
